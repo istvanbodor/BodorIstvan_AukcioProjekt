@@ -1,5 +1,9 @@
 package hu.petrik.aukcioprojekt;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -19,8 +23,66 @@ public class Main {
         } catch (InputMismatchException e) {
             System.out.println("Nem megfelelő számot adott meg nem lesz felvéve a festmény");
         }
+        String fajlNev = "festmenyek.csv";
+        try {
+            festmenyekHozzaadasaFajlbol("festmenyek.csv");
+        } catch (FileNotFoundException e) {
+            System.out.printf("Hiba történt a beolvasáskor a(z) %s fájl nem található\n",fajlNev);
+        } catch (IOException e)
+        {
+            System.out.println("Ismeretlen hiba");
+
+        }
+        veletlenszerulicit();
+        konzolosliciteljaras();
+        for(Festmeny f: festmenyek)
+        {
+            System.out.println(f);
+        }
 
     }
+
+
+    private static void konzolosliciteljaras()
+    {
+            Scanner sc = new Scanner(System.in);
+
+
+
+
+
+    }
+
+
+
+
+
+    private static void festmenyekHozzaadasaFajlbol(String fajlNev) throws IOException {
+        FileReader fr = new FileReader(fajlNev);
+        BufferedReader br = new BufferedReader(fr);
+        String sor = br.readLine();
+        while (sor!= null && !sor.equals(""))
+        {
+            String[] adatok = sor.split(";");
+            Festmeny festmeny = new Festmeny(adatok[1], adatok[0], adatok[2]);
+            festmenyek.add(festmeny);
+
+        }
+
+
+    }
+
+    private static void veletlenszerulicit()
+    {
+        for (int i = 0; i <20 ; i++) {
+
+            int festmenyIndex = (int)(Math.random()*festmenyek.size());
+            festmenyek.get(festmenyIndex).licit();
+        }
+
+
+    }
+
     private static void festmenyekFelveteleKonzolrol()
     {
     Scanner sc = new Scanner(System.in);
