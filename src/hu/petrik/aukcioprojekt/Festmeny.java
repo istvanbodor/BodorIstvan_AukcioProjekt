@@ -107,7 +107,12 @@ public class Festmeny {
     public String toString() {
         DateTimeFormatter formatum =  DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return String.format("%s: %s (%s)\n" +
-                "%s\n" +
-                "%d $ - %s (összesen: %d db)\n", this.festo, this.cim, this.stilus,this.elkelt ? "elkelt" : "nem kelt el", this.legmagasabbLicit, this.legutolsoLicitIdeje.format(formatum), this.licitekSzama);
+                "%s" +
+                "%d $ - %s (összesen: %d db)\n", this.festo, this.cim, this.stilus,this.elkelt ? "elkelt\n" : "nem kelt el", this.legmagasabbLicit, this.legutolsoLicitIdeje.format(formatum), this.licitekSzama);
     }
+
+
+
+
+
 }
